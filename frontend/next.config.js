@@ -4,11 +4,11 @@ const nextConfig = {
     return [
       {
         source: '/api/segments/:path*',
-        destination: 'http://localhost:5000/api/segments/:path*'
+        destination: 'https://xeno-crm-4-vlo4.onrender.com/'
       },
       {
         source: '/api/campaigns/:path*', // ✅ this is what’s missing
-        destination: 'http://localhost:5000/api/campaigns/:path*'
+        destination: 'https://xeno-crm-4-vlo4.onrender.com/'
       }
     ];
   }
