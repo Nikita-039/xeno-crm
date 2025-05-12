@@ -25,17 +25,17 @@ Tech Stack
    npm install
    # Create a .env file
    PORT = 5000 
-   MONGO_URI = mongodb+srv://anshikaansh2501:ros1BYQKHEvKziPe@cluster0.ggtyoax.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+   MONGO_URI = 
    run node index.js
    3. Frontend setup
    cd frontend
    npm install
    # Create a .env.local file
    GOOGLE_CLIENT_ID=
-   GOOGLE_CLIENT_SECRET=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
+   GOOGLE_CLIENT_
    NEXTAUTH_URL=http://localhost:3000
-   NEXTAUTH_SECRET=d3c936eb4c249a554411e3eaec8eaa3c
-   COHERE_API_KEY=vXs4Qwvp87g3mrzJXaJ6JC5tlLEJ7CZ4vbhaW6J6
+   NEXTAUTH_SECRET=
+   COHERE_API_KEY=
 
 
    AI Feature: Message Generator
