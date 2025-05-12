@@ -5,7 +5,6 @@ import Customer from '../models/Customer.js';
 import { buildMongoQuery } from './utils.js';
 import axios from 'axios'; 
 
-// ✅ Preview audience size
 export const previewSegment = async (req, res) => {
   try {
     const rules = req.body.rules;
@@ -23,7 +22,7 @@ export const previewSegment = async (req, res) => {
   }
 };
 
-// Save segment and start campaign using vendor simulation
+
 export const saveSegmentAndStartCampaign = async (req, res) => {
   try {
     const { name, rules, createdBy } = req.body;
@@ -32,14 +31,13 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    // 1. Save segment
+   
     const segment = await Segment.create({ name, rules, createdBy });
 
-    // 2. Get matched customers
+
     const mongoQuery = buildMongoQuery(rules);
     const customers = await Customer.find(mongoQuery);
 
-    // 3. Create campaign with initial stats
     const campaign = await Campaign.create({
       segmentId: segment._id,
       audienceSize: customers.length,
@@ -47,7 +45,7 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
       failed: 0
     });
 
-    // 4. Create logs with PENDING status and trigger vendor delivery
+    
     for (const customer of customers) {
       const log = await CommunicationLog.create({
         customerId: customer._id,
@@ -56,7 +54,6 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
         message: `Hi ${customer.name}, here’s 10% off on your next order!`
       });
 
-      // Send to vendor simulation API
       await axios.post('http://localhost:5000/api/vendor/send', {
         customerId: customer._id,
         campaignId: campaign._id,
@@ -76,7 +73,6 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
   }
 };
 
-// ✅ Get campaign history
 export const getAllCampaigns = async (req, res) => {
   try {
     const campaigns = await Campaign.find()
@@ -89,15 +85,12 @@ export const getAllCampaigns = async (req, res) => {
   }
 };
 
-// Delete a campaign + its segment + logs
 export const deleteCampaign = async (req, res) => {
   try {
     const campaignId = req.params.id;
 
-    // Delete communication logs first
     await CommunicationLog.deleteMany({ campaignId });
 
-    // Delete campaign and segment
     const campaign = await Campaign.findByIdAndDelete(campaignId);
     if (campaign?.segmentId) {
       await Segment.findByIdAndDelete(campaign.segmentId);
