@@ -3,7 +3,10 @@ import Campaign from '../models/Campaign.js';
 import CommunicationLog from '../models/CommunicationLog.js';
 import Customer from '../models/Customer.js';
 import { buildMongoQuery } from './utils.js';
-import axios from 'axios'; 
+import axios from 'axios';
+
+const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
+
 
 export const previewSegment = async (req, res) => {
   try {
@@ -31,9 +34,7 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-   
     const segment = await Segment.create({ name, rules, createdBy });
-
 
     const mongoQuery = buildMongoQuery(rules);
     const customers = await Customer.find(mongoQuery);
@@ -45,7 +46,6 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
       failed: 0
     });
 
-    
     for (const customer of customers) {
       const log = await CommunicationLog.create({
         customerId: customer._id,
@@ -54,7 +54,8 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
         message: `Hi ${customer.name}, here’s 10% off on your next order!`
       });
 
-      await axios.post('http://localhost:5000/api/vendor/send', {
+  
+      await axios.post(`${BASE_URL}/api/vendor/send`, {
         customerId: customer._id,
         campaignId: campaign._id,
         logId: log._id,
@@ -73,6 +74,7 @@ export const saveSegmentAndStartCampaign = async (req, res) => {
   }
 };
 
+
 export const getAllCampaigns = async (req, res) => {
   try {
     const campaigns = await Campaign.find()
@@ -84,6 +86,7 @@ export const getAllCampaigns = async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch campaigns', error: err.message });
   }
 };
+
 
 export const deleteCampaign = async (req, res) => {
   try {
@@ -101,6 +104,7 @@ export const deleteCampaign = async (req, res) => {
     res.status(500).json({ message: 'Error deleting campaign', error: err.message });
   }
 };
+
 
 
 

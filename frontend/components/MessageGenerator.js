@@ -49,7 +49,7 @@ export default function MessageGenerator() {
         {loading ? 'Generating...' : 'Generate Messages'}
       </button>
 
-      {error && <p className="text-danger">❌ {error}</p>}
+      {error && <p className="text-danger"> {error}</p>}
 
       {messages.length > 0 && (
         <ul className="list-group">
