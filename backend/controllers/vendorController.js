@@ -3,12 +3,10 @@ import axios from 'axios';
 export const simulateDelivery = async (req, res) => {
   const { customerId, campaignId, logId, message } = req.body;
 
-  // Simulate delivery delay
   setTimeout(async () => {
     const success = Math.random() < 0.9;
     const status = success ? 'SENT' : 'FAILED';
 
-    // Call the delivery receipt endpoint on your backend
     try {
       await axios.post('http://localhost:5000/api/receipts', {
         logId,

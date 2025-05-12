@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
 import SessionWrapper from '../../components/SessionWrapper';
-import CampaignList from './CampaignList'; // 👈 client component
+import CampaignList from './CampaignList'; 
 
 export default async function CampaignPage() {
   const session = await getServerSession(authOptions);

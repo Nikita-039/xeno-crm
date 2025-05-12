@@ -5,8 +5,8 @@ import { getAllCampaigns,  deleteCampaign } from '../controllers/segmentControll
 
 
 const router = express.Router();
-router.get('/campaigns', getAllCampaigns); // GET /api/segments/campaigns
-router.post('/preview', previewSegment); // POST /api/segments/preview
-router.post('/save', saveSegmentAndStartCampaign); // POST /api/segments/save
+router.get('/campaigns', getAllCampaigns); 
+router.post('/preview', previewSegment); 
+router.post('/save', saveSegmentAndStartCampaign);
 router.delete('/campaigns/:id', deleteCampaign);
 export default router;

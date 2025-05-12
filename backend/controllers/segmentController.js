@@ -3,7 +3,7 @@ import Campaign from '../models/Campaign.js';
 import CommunicationLog from '../models/CommunicationLog.js';
 import Customer from '../models/Customer.js';
 import { buildMongoQuery } from './utils.js';
-import axios from 'axios'; // ✅ Added for calling vendor API
+import axios from 'axios'; 
 
 // ✅ Preview audience size
 export const previewSegment = async (req, res) => {
@@ -23,7 +23,7 @@ export const previewSegment = async (req, res) => {
   }
 };
 
-// ✅ Save segment and start campaign using vendor simulation
+// Save segment and start campaign using vendor simulation
 export const saveSegmentAndStartCampaign = async (req, res) => {
   try {
     const { name, rules, createdBy } = req.body;
@@ -89,7 +89,7 @@ export const getAllCampaigns = async (req, res) => {
   }
 };
 
-// ✅ Delete a campaign + its segment + logs
+// Delete a campaign + its segment + logs
 export const deleteCampaign = async (req, res) => {
   try {
     const campaignId = req.params.id;

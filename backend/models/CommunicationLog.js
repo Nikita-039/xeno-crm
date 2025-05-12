@@ -13,7 +13,7 @@ const communicationLogSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['PENDING', 'SENT', 'FAILED'], // ✅ Include PENDING here
+    enum: ['PENDING', 'SENT', 'FAILED'], 
     required: true
   },
   message: {

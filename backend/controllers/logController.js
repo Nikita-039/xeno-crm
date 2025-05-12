@@ -6,7 +6,7 @@ export const getLogsByCampaign = async (req, res) => {
     const campaignId = req.params.id;
 
     const logs = await CommunicationLog.find({ campaignId })
-      .populate('customerId', 'name email') // just get name/email
+      .populate('customerId', 'name email') 
       .sort({ createdAt: -1 });
 
     res.json(logs);

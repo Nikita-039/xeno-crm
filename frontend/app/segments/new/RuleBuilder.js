@@ -2,14 +2,14 @@
 
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // ✅ added for redirection
+import { useRouter } from 'next/navigation'; 
 
 const fields = ['totalSpend', 'visits', 'lastActive'];
 const operators = ['>', '<', '='];
 
 export default function RuleBuilder() {
   const { data: session } = useSession();
-  const router = useRouter(); // ✅ initialize router
+  const router = useRouter(); 
   const [segmentName, setSegmentName] = useState('');
   const [conditions, setConditions] = useState([
     { field: '', operator: '', value: '', logic: 'AND' }
@@ -77,7 +77,6 @@ export default function RuleBuilder() {
 
       if (!response.ok) throw new Error(data.message || 'Save failed');
 
-      // ✅ Redirect to campaigns page on success
       router.push('/campaigns');
     } catch (err) {
       setError(err.message);

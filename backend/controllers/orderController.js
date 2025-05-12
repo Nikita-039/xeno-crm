@@ -1,4 +1,3 @@
-// controllers/orderController.js
 import Order from '../models/Order.js';
 import Customer from '../models/Customer.js';
 
@@ -12,7 +11,6 @@ export const createOrder = async (req, res) => {
     const order = new Order({ customerId, amount, orderDate });
     await order.save();
 
-    // Update customer's totalSpend and lastActive
     customer.totalSpend += amount;
     customer.lastActive = orderDate;
     customer.visits += 1;

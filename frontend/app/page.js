@@ -3,7 +3,7 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import SessionWrapper from '../components/SessionWrapper';
 import Link from 'next/link';
-import MessageGenerator from '../components/MessageGenerator'; // ✅ Import added
+import MessageGenerator from '../components/MessageGenerator'; 
 
 export default function Home() {
   return (
@@ -36,7 +36,7 @@ function HomeContent() {
               </button>
             </div>
 
-            {/* ✅ AI Message Generator Added Below */}
+           
             <MessageGenerator />
           </>
         ) : (

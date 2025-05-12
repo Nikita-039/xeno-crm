@@ -1,5 +1,3 @@
-// controllers/utils.js
-
 export const buildMongoQuery = (rules) => {
   const andConditions = [];
   const orConditions = [];
@@ -9,7 +7,7 @@ export const buildMongoQuery = (rules) => {
     const field = rule.field;
 
     const value = field === 'lastActive'
-      ? new Date(Date.now() - parseInt(rule.value) * 24 * 60 * 60 * 1000) // days → milliseconds
+      ? new Date(Date.now() - parseInt(rule.value) * 24 * 60 * 60 * 1000) 
       : Number(rule.value);
 
     switch (rule.operator) {

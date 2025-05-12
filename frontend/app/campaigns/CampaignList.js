@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link'; // ✅ Added import
+import Link from 'next/link'; 
 
 export default function CampaignList() {
   const [campaigns, setCampaigns] = useState([]);

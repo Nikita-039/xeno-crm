@@ -1,4 +1,3 @@
-// controllers/customerController.js
 import Customer from '../models/Customer.js';
 
 export const createCustomer = async (req, res) => {
